@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jiten Patel — Portfolio</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.2.0/dist/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #ffffff;
+    --bg-secondary: #f6f6f4;
+    --bg-info: #E6F1FB;
+    --bg-success: #EAF3DE;
+    --text-primary: #1a1a1a;
+    --text-secondary: #6b6b68;
+    --border: rgba(0,0,0,0.12);
+    --border-hover: rgba(0,0,0,0.25);
+    --blue: #185FA5;
+    --blue-light: #E6F1FB;
+    --blue-text: #0C447C;
+    --green-bg: #EAF3DE;
+    --green-text: #27500A;
+    --green-dot: #3B6D11;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1e1e1c;
+      --bg-secondary: #2a2a28;
+      --bg-info: #0c2d4a;
+      --bg-success: #172d0c;
+      --text-primary: #f0f0ee;
+      --text-secondary: #9a9a97;
+      --border: rgba(255,255,255,0.12);
+      --border-hover: rgba(255,255,255,0.25);
+      --blue-light: #0c2d4a;
+      --blue-text: #85B7EB;
+      --green-bg: #172d0c;
+      --green-text: #C0DD97;
+      --green-dot: #639922;
+    }
+  }
+  body { font-family: var(--font); background: var(--bg-secondary); color: var(--text-primary); line-height: 1.7; }
+  .page { max-width: 880px; margin: 2rem auto; background: var(--bg); border-radius: var(--radius-lg); border: 0.5px solid var(--border); overflow: hidden; }
+  .hero { padding: 3rem 2.5rem 2.5rem; border-bottom: 0.5px solid var(--border); }
+  .hero-top { display: flex; align-items: flex-start; gap: 1.5rem; flex-wrap: wrap; }
+  .avatar { width: 72px; height: 72px; border-radius: 50%; background: var(--blue-light); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 500; color: var(--blue-text); flex-shrink: 0; }
+  .hero-name { font-size: 28px; font-weight: 500; }
+  .hero-title { font-size: 15px; color: var(--text-secondary); margin-top: 4px; }
+  .hero-location { font-size: 13px; color: var(--text-secondary); margin-top: 4px; display: flex; align-items: center; gap: 4px; }
+  .status-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--green-bg); color: var(--green-text); font-size: 12px; padding: 4px 10px; border-radius: var(--radius-md); margin-top: 8px; }
+  .status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-dot); }
+  .hero-summary { margin-top: 1.5rem; font-size: 15px; color: var(--text-secondary); line-height: 1.7; max-width: 700px; }
+  .contact-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.25rem; }
+  .contact-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border: 0.5px solid var(--border-hover); border-radius: 20px; font-size: 13px; color: var(--text-primary); text-decoration: none; background: var(--bg); transition: background 0.15s; }
+  .contact-chip:hover { background: var(--bg-secondary); }
+  .contact-chip i { font-size: 15px; color: var(--text-secondary); }
+  .section { padding: 2rem 2.5rem; border-bottom: 0.5px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 1.25rem; }
+  .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+  .metric-card { background: var(--bg-secondary); border-radius: var(--radius-md); padding: 1rem; }
+  .metric-num { font-size: 26px; font-weight: 500; color: var(--blue); }
+  .metric-label { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+  .why-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1rem 1.25rem; }
+  .why-icon { font-size: 20px; color: var(--blue); margin-bottom: 8px; }
+  .why-title { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+  .why-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+  .timeline-item { display: flex; gap: 1.25rem; padding-bottom: 1.5rem; }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .tl-line { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+  .tl-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--blue); margin-top: 5px; }
+  .tl-connector { width: 1px; background: var(--border); flex: 1; margin-top: 4px; }
+  .timeline-item:last-child .tl-connector { display: none; }
+  .tl-company { font-size: 15px; font-weight: 500; }
+  .tl-role { font-size: 13px; color: var(--text-secondary); margin-top: 2px; }
+  .tl-date { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+  .tl-bullets { margin-top: 10px; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .tl-bullets li { font-size: 13px; color: var(--text-secondary); line-height: 1.5; padding-left: 12px; position: relative; }
+  .tl-bullets li::before { content: "–"; position: absolute; left: 0; }
+  .result-tag { display: inline-flex; align-items: center; background: var(--blue-light); color: var(--blue-text); font-size: 11px; padding: 2px 8px; border-radius: var(--radius-md); margin-left: 6px; vertical-align: middle; }
+  .cert-list { display: flex; flex-direction: column; gap: 10px; }
+  .cert-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 1rem; background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); }
+  .cert-icon-wrap { width: 36px; height: 36px; border-radius: var(--radius-md); background: var(--blue-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .cert-icon-wrap i { font-size: 18px; color: var(--blue); }
+  .cert-name { font-size: 14px; font-weight: 500; }
+  .cert-org { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+  .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+  .project-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem; }
+  .project-title { font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+  .project-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+  .ptag { background: var(--bg-secondary); font-size: 11px; color: var(--text-secondary); padding: 2px 8px; border-radius: var(--radius-md); }
+  .skills-section { display: flex; flex-direction: column; gap: 10px; }
+  .skill-group { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1rem 1.25rem; }
+  .sg-title { font-size: 13px; font-weight: 500; color: var(--text-secondary); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+  .sg-title i { font-size: 15px; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .skill-tag { background: var(--bg-secondary); color: var(--text-primary); font-size: 12px; padding: 4px 10px; border-radius: var(--radius-md); border: 0.5px solid var(--border); }
+  .skill-tag.primary { background: var(--blue-light); color: var(--blue-text); border-color: transparent; }
+  .goal-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 10px; }
+  .goal-card:last-child { margin-bottom: 0; }
+  .goal-icon { width: 36px; height: 36px; background: var(--blue-light); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .goal-icon i { font-size: 18px; color: var(--blue); }
+  .goal-text { font-size: 14px; color: var(--text-primary); line-height: 1.6; }
+  .edu-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem; display: flex; gap: 1rem; align-items: flex-start; }
+  .edu-badge { width: 42px; height: 42px; background: var(--blue-light); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .edu-badge i { font-size: 20px; color: var(--blue); }
+  .edu-school { font-size: 15px; font-weight: 500; }
+  .edu-degree { font-size: 13px; color: var(--text-secondary); margin-top: 2px; }
+  .edu-meta { font-size: 12px; color: var(--text-secondary); margin-top: 6px; }
+  .gpa-pill { display: inline-flex; background: var(--green-bg); color: var(--green-text); font-size: 12px; padding: 2px 8px; border-radius: var(--radius-md); margin-left: 6px; }
+  .courses { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+  .course-tag { background: var(--bg-secondary); font-size: 11px; color: var(--text-secondary); padding: 2px 8px; border-radius: var(--radius-md); }
+  @media (max-width: 600px) { .hero, .section { padding-left: 1.25rem; padding-right: 1.25rem; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <div class="hero-top">
+      <div class="avatar">JP</div>
+      <div>
+        <div class="hero-name">Jiten Patel</div>
+        <div class="hero-title">Business & Analytics Student · Finance · Investment Banking · Management Consulting</div>
+        <div class="hero-location"><i class="ti ti-map-pin" style="font-size:13px" aria-hidden="true"></i> Katy, TX 77450</div>
+        <div class="status-badge"><span class="status-dot"></span> Open to internships — Summer / Fall 2026</div>
+      </div>
+    </div>
+    <p class="hero-summary">Business and analytics student (GPA 3.7) with hands-on experience in quantitative analysis, capital markets, and client deliverables through virtual programs with J.P. Morgan and Goldman Sachs. Built DCF models, led cross-functional teams, and drove a 20% increase in user retention across 5+ NGO digital platforms. Targeting high-impact internships in investment banking or management consulting.</p>
+    <div class="contact-row">
+      <a class="contact-chip" href="mailto:jiten140905@gmail.com"><i class="ti ti-mail" aria-hidden="true"></i> jiten140905@gmail.com</a>
+      <a class="contact-chip" href="tel:+13468434203"><i class="ti ti-phone" aria-hidden="true"></i> +1-346-843-4203</a>
+      <a class="contact-chip" href="https://www.linkedin.com/in/jiten-patel-05693b28a" target="_blank"><i class="ti ti-brand-linkedin" aria-hidden="true"></i> LinkedIn</a>
+      <a class="contact-chip" href="https://wa.me/13468434203" target="_blank"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i> WhatsApp</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Impact at a glance</div>
+    <div class="metrics-grid">
+      <div class="metric-card"><div class="metric-num">3.7</div><div class="metric-label">GPA</div></div>
+      <div class="metric-card"><div class="metric-num">20%</div><div class="metric-label">User retention lift across 5+ NGO platforms</div></div>
+      <div class="metric-card"><div class="metric-num">3</div><div class="metric-label">Industry certifications (Forage)</div></div>
+      <div class="metric-card"><div class="metric-num">100%</div><div class="metric-label">On-time project delivery</div></div>
+      <div class="metric-card"><div class="metric-num">4+</div><div class="metric-label">Stakeholder reports delivered</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Why hire me</div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon"><i class="ti ti-chart-line" aria-hidden="true"></i></div>
+        <div class="why-title">Quantitative foundation</div>
+        <div class="why-desc">DCF, LBO, 3-statement modeling, and scenario analysis — not just theory, built and applied in J.P. Morgan simulation.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><i class="ti ti-users" aria-hidden="true"></i></div>
+        <div class="why-title">Proven leadership</div>
+        <div class="why-desc">Led a 4-member cross-functional team to 100% on-time delivery, managing scope, resources, and executive stakeholders.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><i class="ti ti-puzzle" aria-hidden="true"></i></div>
+        <div class="why-title">Consulting-grade thinking</div>
+        <div class="why-desc">Applies MECE frameworks, root-cause decomposition, and structured client deliverables — the same toolkit used at Big 4.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><i class="ti ti-trending-up" aria-hidden="true"></i></div>
+        <div class="why-title">Results, not just effort</div>
+        <div class="why-desc">Every bullet ties to a measurable outcome — 20% retention increase, 3+ recommendations accepted, zero missed deadlines.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Education</div>
+    <div class="edu-card">
+      <div class="edu-badge"><i class="ti ti-school" aria-hidden="true"></i></div>
+      <div>
+        <div class="edu-school">Houston Community College <span class="gpa-pill">GPA 3.7</span></div>
+        <div class="edu-degree">Associate of Arts — Business / Commerce</div>
+        <div class="edu-meta">Houston, TX · Jul 2025 – Jun 2027 · Transferring to UH Bauer College of Business (Spring 2027)</div>
+        <div class="courses">
+          <span class="course-tag">Accounting</span>
+          <span class="course-tag">Statistics</span>
+          <span class="course-tag">Economics</span>
+          <span class="course-tag">Business Analytics</span>
+          <span class="course-tag">Financial Management</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Work experience</div>
+    <div class="timeline-item">
+      <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+      <div style="flex:1">
+        <div class="tl-company">CSRBOX</div>
+        <div class="tl-role">Web Development & Project Lead Intern</div>
+        <div class="tl-date">Jun 2024 – Aug 2024 · Remote</div>
+        <ul class="tl-bullets">
+          <li>Led a 4-member cross-functional team to 100% on-time delivery across all milestones using MECE-based frameworks and weekly progress tracking.<span class="result-tag">100% on-schedule</span></li>
+          <li>Drove a 20% increase in user retention across 5+ NGO digital platforms through quantitative behavioral analysis and targeted UX recommendations.<span class="result-tag">+20% retention</span></li>
+          <li>Eliminated resource bottlenecks — zero missed deadlines — through process improvement and workload redistribution.</li>
+          <li>Secured executive sign-off in a single review cycle by delivering a pitchbook-style presentation quantifying technical work as business value.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item" style="margin-top:1.25rem">
+      <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+      <div style="flex:1">
+        <div class="tl-company">SystemTron</div>
+        <div class="tl-role">Student Intern</div>
+        <div class="tl-date">Dec 2024 · Remote</div>
+        <ul class="tl-bullets">
+          <li>Identified key operational inefficiencies, producing 3+ structured improvement recommendations accepted by management via root-cause decomposition.<span class="result-tag">3+ accepted</span></li>
+          <li>Delivered 4+ stakeholder-facing BI reports synthesizing quantitative analysis into management consulting-standard deliverables.<span class="result-tag">4+ reports</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Certifications</div>
+    <div class="cert-list">
+      <div class="cert-item">
+        <div class="cert-icon-wrap"><i class="ti ti-building-bank" aria-hidden="true"></i></div>
+        <div>
+          <div class="cert-name">J.P. Morgan — Investment Banking Job Simulation</div>
+          <div class="cert-org">Forage · Nov 2025 · 3-statement models, WACC, DCF, M&A and LBO case studies</div>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-icon-wrap"><i class="ti ti-chart-bar" aria-hidden="true"></i></div>
+        <div>
+          <div class="cert-name">Goldman Sachs — Controllers Job Simulation</div>
+          <div class="cert-org">Forage · Nov 2025 · Quantitative analysis, financial controls, regulatory compliance</div>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-icon-wrap"><i class="ti ti-briefcase" aria-hidden="true"></i></div>
+        <div>
+          <div class="cert-name">Introduction to Strategy Consulting Job Simulation</div>
+          <div class="cert-org">Forage · Mar 2026 · MECE frameworks, structured problem-solving, strategic recommendations</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Projects</div>
+    <div class="project-grid">
+      <div class="project-card">
+        <div class="project-title"><i class="ti ti-table" style="font-size:14px; vertical-align:-2px; margin-right:5px; color:#185FA5" aria-hidden="true"></i>Excel Financial Model — KPI & Scenario Dashboard</div>
+        <div class="project-desc">Dynamic 3-scenario model (base / upside / downside) tracking 10+ KPIs with live sensitivity outputs. Built with DCF valuation, pivot tables, and VLOOKUP — applying J.P. Morgan capital markets concepts directly.</div>
+        <div class="project-tags">
+          <span class="ptag">Excel (Advanced)</span><span class="ptag">DCF</span><span class="ptag">Scenario Analysis</span><span class="ptag">Pivot Tables</span><span class="ptag">KPI Modeling</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-title"><i class="ti ti-code" style="font-size:14px; vertical-align:-2px; margin-right:5px; color:#185FA5" aria-hidden="true"></i>Netflix Clone & Project Management App</div>
+        <div class="project-desc">End-to-end deployment of two full-stack, fully responsive live products. Applied structured PM frameworks and agile prioritization throughout the build lifecycle.</div>
+        <div class="project-tags">
+          <span class="ptag">HTML / CSS</span><span class="ptag">JavaScript</span><span class="ptag">Responsive Design</span><span class="ptag">Agile PM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Skills dashboard</div>
+    <div class="skills-section">
+      <div class="skill-group">
+        <div class="sg-title"><i class="ti ti-chart-line" aria-hidden="true"></i> Financial analysis</div>
+        <div class="skill-tags">
+          <span class="skill-tag primary">DCF Valuation</span>
+          <span class="skill-tag primary">LBO Modeling</span>
+          <span class="skill-tag primary">3-Statement Modeling</span>
+          <span class="skill-tag primary">M&A Analysis</span>
+          <span class="skill-tag primary">Comparable Companies</span>
+          <span class="skill-tag primary">Capital Markets</span>
+          <span class="skill-tag primary">Pitchbook Development</span>
+          <span class="skill-tag">Excel (Advanced)</span>
+          <span class="skill-tag">Power BI</span>
+          <span class="skill-tag">Bloomberg / FactSet (familiar)</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="sg-title"><i class="ti ti-puzzle" aria-hidden="true"></i> Consulting & strategy</div>
+        <div class="skill-tags">
+          <span class="skill-tag primary">MECE Frameworks</span>
+          <span class="skill-tag primary">Process Improvement</span>
+          <span class="skill-tag primary">Cost Reduction Analysis</span>
+          <span class="skill-tag">Quantitative Analysis</span>
+          <span class="skill-tag">Client Deliverables</span>
+          <span class="skill-tag">Stakeholder Communication</span>
+          <span class="skill-tag">Cross-functional Leadership</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="sg-title"><i class="ti ti-code" aria-hidden="true"></i> Data & programming</div>
+        <div class="skill-tags">
+          <span class="skill-tag">SQL</span><span class="skill-tag">Python</span>
+          <span class="skill-tag">Statistical Analysis</span>
+          <span class="skill-tag">Data Visualization</span>
+          <span class="skill-tag">HTML / CSS / JavaScript</span>
+          <span class="skill-tag">Responsive Design</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Career goals</div>
+    <div class="goal-card">
+      <div class="goal-icon"><i class="ti ti-flag" aria-hidden="true"></i></div>
+      <div class="goal-text"><strong>Near-term (2026–2027):</strong> Secure a high-impact internship in investment banking or management consulting (Big 4 / boutique IB). Apply financial modeling and strategic frameworks to live client work.</div>
+    </div>
+    <div class="goal-card">
+      <div class="goal-icon"><i class="ti ti-building" aria-hidden="true"></i></div>
+      <div class="goal-text"><strong>Mid-term (2027–2029):</strong> Transfer to UH Bauer College of Business (Finance major), deepen capital markets expertise, and build a deal track record in IB or strategy consulting.</div>
+    </div>
+    <div class="goal-card">
+      <div class="goal-icon"><i class="ti ti-rocket" aria-hidden="true"></i></div>
+      <div class="goal-text"><strong>Long-term:</strong> Move into a senior role at a bulge bracket or top-tier consulting firm, leveraging analytical depth and leadership experience to drive high-stakes decisions.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Contact</div>
+    <div class="contact-row">
+      <a class="contact-chip" href="mailto:jiten140905@gmail.com"><i class="ti ti-mail" aria-hidden="true"></i> jiten140905@gmail.com</a>
+      <a class="contact-chip" href="tel:+13468434203"><i class="ti ti-phone" aria-hidden="true"></i> +1-346-843-4203</a>
+      <a class="contact-chip" href="https://www.linkedin.com/in/jiten-patel-05693b28a" target="_blank"><i class="ti ti-brand-linkedin" aria-hidden="true"></i> LinkedIn</a>
+      <a class="contact-chip" href="https://wa.me/13468434203" target="_blank"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i> WhatsApp</a>
+    </div>
+    <p style="font-size:13px; color:#6b6b68; margin-top:1.25rem;">Based in Katy, TX · Open to remote and Houston-area opportunities · Available for calls and interviews on request.</p>
+  </div>
+
+</div>
+</body>
+</html>
